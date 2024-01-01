@@ -1,0 +1,42 @@
+
+.form-group {
+  margin: 20px;
+}
+
+button.btn {
+  width: 200px;
+}
+
+i {
+  margin-right: 10px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.fa-tv {
+  color: #3498db;
+}
+
+.fa-bath {
+  color: #2ecc71;
+}
+
+.fa-utensils {
+  color: #e74c3c;
+}
+
+.fa-bed {
+  color: #9b59b6;
+}
+
+.fa-shower {
+  color: #f39c12;
+}
