@@ -1,48 +1,46 @@
-// import { Component } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-dropdown',
-//   templateUrl: './dropdown.component.html',
-//   styleUrls: ['./dropdown.component.css']
-// })
-// export class DropdownComponent {
-//   selectedRoom: string = 'salon';
-// }
-
-import { Component } from '@angular/core';
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input} from '@angular/core';
+import { CommonModule, NgForOf } from "@angular/common";
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
+import { MatListModule } from "@angular/material/list";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: 'app-dropdown',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatIconModule,
+    NgForOf,
+    MatButtonModule,
+    MatMenuModule,
+  ],
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
-  providers: [NgbDropdownConfig]
+  styleUrl: './dropdown.component.css'
 })
 export class DropdownComponent {
-  selectedRoom: string = 'Wybierz pomieszczenie';
+  @Input() roomMenuTrigger: MatMenuTrigger | undefined;
 
-  constructor(config: NgbDropdownConfig) {
-    config.autoClose = 'outside';
+  rooms = [
+    { value: 'kitchen', viewValue: 'Kuchnia', icon: 'kitchen' },
+    { value: 'bathroom', viewValue: 'Łazienka', icon: 'bathtub' },
+    { value: 'toilet', viewValue: 'Toaleta', icon: 'wc' },
+    { value: 'add-new', viewValue: 'Dodaj Nowe', icon: 'add' },
+  ];
+
+  selectRoom(room: string): void {
+    if (this.roomMenuTrigger) {
+      this.roomMenuTrigger.openMenu();
+    }
   }
 
-  selectRoom(room: string) {
-    this.selectedRoom = room;
-  }
-
-  getRoomIcon(room: string): string {
-    switch (room) {
-      case 'saloon':
-        return 'fa-tv';
-      case 'bathroom':
-        return 'fa-bath';
-      case 'kitchen':
-        return 'fa-utensils';
-      case 'bedroom':
-        return 'fa-bed';
-      case 'lazienka':
-        return 'fa-shower';
-      default:
-        return '';
+  openMenu(): void {
+    if (this.roomMenuTrigger) {
+      this.roomMenuTrigger.openMenu();
     }
   }
 }

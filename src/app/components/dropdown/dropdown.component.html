@@ -1,36 +1,15 @@
-<!--<div class="form-group">-->
-<!--  <label for="roomDropdown">Wybierz pomieszczenie:</label>-->
-<!--  <select id="roomDropdown" class="form-control" [(ngModel)]="selectedRoom">-->
-<!--    <option value="saloon">Salon</option>-->
-<!--    <option value="bathroom">Łazienka</option>-->
-<!--    <option value="kitchen">Kuchnia</option>-->
-<!--    <option value="bedroom">Sypialnia</option>-->
-<!--    <option value="lazienka">Łazienka</option>-->
-<!--  </select>-->
-<!--</div>-->
+<button mat-button [matMenuTriggerFor]="menuTrigger">Wybierz pokój</button>
+<mat-menu #menuTrigger="matMenu">
+  <button mat-menu-item *ngFor="let room of rooms" (click)="selectRoom(room.value)">
+    <mat-icon>{{ room.icon }}</mat-icon>
+    <span>{{ room.viewValue }}</span>
+  </button>
+</mat-menu>
 
-<div class="form-group">
-  <label>Wybierz pomieszczenie:</label>
-  <ngb-dropdown [open]="isDropdownOpen" (openChange)="isDropdownOpen = $event">
-    <button class="btn btn-outline-primary" ngbDropdownToggle>
-      <i [ngClass]="getRoomIcon(selectedRoom)"></i> {{ selectedRoom }}
-    </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button class="dropdown-item" (click)="selectRoom('saloon')">
-        <i class="fas fa-tv"></i> Salon
-      </button>
-      <button class="dropdown-item" (click)="selectRoom('bathroom')">
-        <i class="fas fa-bath"></i> Łazienka
-      </button>
-      <button class="dropdown-item" (click)="selectRoom('kitchen')">
-        <i class="fas fa-utensils"></i> Kuchnia
-      </button>
-      <button class="dropdown-item" (click)="selectRoom('bedroom')">
-        <i class="fas fa-bed"></i> Sypialnia
-      </button>
-      <button class="dropdown-item" (click)="selectRoom('lazienka')">
-        <i class="fas fa-shower"></i> Łazienka
-      </button>
-    </div>
-  </ngb-dropdown>
-</div>
+
+
+<!--<div *ngIf="selectedRoom === 'kitchen'">Kuchnia</div>-->
+<!--<div *ngIf="selectedRoom === 'bathroom'">Łazienka</div>-->
+<!--<div *ngIf="selectedRoom === 'toilet'">Toaleta</div>-->
+<!--<div *ngIf="selectedRoom === 'add-new'">Dodaj Nowe</div>-->
+
