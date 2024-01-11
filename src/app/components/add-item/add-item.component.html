@@ -1,0 +1,26 @@
+<div>
+  <h2>Dodaj przedmiot</h2>
+  <form (ngSubmit)="addItem()" #itemForm="ngForm">
+    <div>
+      <label for="room">Wybierz pokój:</label>
+      <select id="room" [(ngModel)]="selectedRoom">
+        <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="itemName">Nazwa przedmiotu:</label>
+      <input type="text" id="itemName" name="itemName" [(ngModel)]="name" required>
+    </div>
+    <div>
+      <label for="itemQuantity">Ilość:</label>
+      <input type="number" id="itemQuantity" name="itemQuantity" [(ngModel)]="quantity" required>
+    </div>
+    <div>
+      <label for="itemPrice">Cena:</label>
+      <input type="number" id="itemPrice" name="itemPrice" [(ngModel)]="price" required>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!itemForm.valid">Dodaj</button>
+    </div>
+  </form>
+</div>

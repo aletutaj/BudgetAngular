@@ -45,12 +45,12 @@ export class NavigationComponent {
     this.navigateByRoom(room);
   }
 
-  openMenu(): void {
-    this.dropdownComponent.openMenu();
-  }
-
   private navigateByRoom(room: string): void {
-    const route = `/${room}`;
-    this.router.navigate([route]);
+    const route = `/room/${room}`;
+    this.router.navigate([route]).then(() => {
+      console.log('Navigation completed successfully');
+    }).catch(error => {
+      console.error('Navigation failed:', error);
+    });
   }
 }

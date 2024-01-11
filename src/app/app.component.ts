@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from "@angular/router";
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SubpageTableComponent } from "./widgets/subpage-table/subpage-table.component";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     RouterOutlet,
     NavigationComponent,
     BrowserAnimationsModule,
+    SubpageTableComponent,
   ],
   styleUrl: './app.component.css'
 })

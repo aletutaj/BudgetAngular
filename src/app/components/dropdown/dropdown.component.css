@@ -1,42 +1,20 @@
-
-.form-group {
-  margin: 20px;
+:host {
+  display: inline-block;
 }
 
-button.btn {
-  width: 200px;
+button {
+  padding: 10px;
+  border: 1px solid #ccc;
+
 }
 
-i {
-  margin-right: 10px;
+.room-button {
+  position: relative;
 }
 
-.dropdown-item {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.fa-tv {
-  color: #3498db;
-}
-
-.fa-bath {
-  color: #2ecc71;
-}
-
-.fa-utensils {
-  color: #e74c3c;
-}
-
-.fa-bed {
-  color: #9b59b6;
-}
-
-.fa-shower {
-  color: #f39c12;
+mat-menu {
+  margin-top: 5px;
+  position: absolute;
+  top: 100%;
+  left: 0;
 }

@@ -1,15 +1,10 @@
-<button mat-button [matMenuTriggerFor]="menuTrigger">Wybierz pokój</button>
+<button mat-menu-trigger class="room-button" [matMenuTriggerFor]="menuTrigger" style="cursor: pointer;">
+  {{ buttonLabel }}
+</button>
+
 <mat-menu #menuTrigger="matMenu">
-  <button mat-menu-item *ngFor="let room of rooms" (click)="selectRoom(room.value)">
+  <button mat-menu-item *ngFor="let room of rooms" [routerLink]="['/room', room.value]">
     <mat-icon>{{ room.icon }}</mat-icon>
     <span>{{ room.viewValue }}</span>
   </button>
 </mat-menu>
-
-
-
-<!--<div *ngIf="selectedRoom === 'kitchen'">Kuchnia</div>-->
-<!--<div *ngIf="selectedRoom === 'bathroom'">Łazienka</div>-->
-<!--<div *ngIf="selectedRoom === 'toilet'">Toaleta</div>-->
-<!--<div *ngIf="selectedRoom === 'add-new'">Dodaj Nowe</div>-->
-

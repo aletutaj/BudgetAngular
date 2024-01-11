@@ -3,8 +3,9 @@
     <li><a routerLink="/summary">Podsumowanie Budżetu</a></li>
     <li><a routerLink="/add-item">Dodaj</a></li>
     <li class="room-menu">
-      <app-dropdown [roomMenuTrigger]="roomMenuTrigger"></app-dropdown>
+      <div class="room-menu-label">
+        <app-dropdown (roomSelected)="onRoomSelected($event)"></app-dropdown>
+      </div>
     </li>
-    <li><a routerLink="/budget-list">Lista Budżetu</a></li>
   </ul>
 </nav>
