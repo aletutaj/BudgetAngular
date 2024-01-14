@@ -1,4 +1,4 @@
-<div *ngIf="room">
-  <h2>Wybrany pokój: {{ room }}</h2>
-  <app-subpage-table [room]="room"></app-subpage-table>
+<div *ngIf="roomId">
+  <h2>Wybrany pokój: {{ roomId | translate }}</h2>
+  <app-subpage-table [room]="roomId"></app-subpage-table>
 </div>

@@ -1,0 +1,12 @@
+<h3>Dodaj nowe pomieszczenie</h3>
+
+<p>Wybierz ikonę</p>
+<app-icon-picker (iconSelected)="roomIcon = $event"></app-icon-picker>
+
+<p>Wpisz nazwę</p>
+<input [(ngModel)]="roomName">
+
+<button (click)="handleAddButtonClick()">Dodaj</button>
+<button>Anuluj</button>
+
+

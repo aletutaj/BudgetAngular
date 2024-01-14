@@ -4,7 +4,7 @@
     <div>
       <label for="room">Wybierz pokój:</label>
       <select id="room" [(ngModel)]="selectedRoom">
-        <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
+        <option *ngFor="let room of rooms" [value]="room">{{ room | translate }}</option>
       </select>
     </div>
     <div>

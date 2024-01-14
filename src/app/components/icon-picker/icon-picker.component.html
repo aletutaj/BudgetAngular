@@ -1,0 +1,17 @@
+<!--<button *ngIf="selectedIcon">-->
+<!--  <mat-icon>{{selectedIcon}}</mat-icon>-->
+<!--</button>-->
+<div *ngIf="containerVisible" class="container-icon-picker">
+  <div *ngFor="let availableIcon of availableIcons" (click)="selectIcon(availableIcon)" class="icon-field">
+    <mat-icon>{{availableIcon}}</mat-icon>
+  </div>
+</div>
+
+<button (click)="containerVisible = !containerVisible">
+  @if(selectedIcon) {
+  <mat-icon>{{selectedIcon}}</mat-icon>
+  } @else {
+  pickAnIcon
+  }
+</button>
+

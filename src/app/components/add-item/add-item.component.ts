@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ItemService } from "../../service/item/item.service";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RoomService } from "../../service/room/room.service";
+import { CommonModule } from "@angular/common";
+import { TranslatePipe } from "../../pipes/translate.pipe";
 
 @Component({
   selector: 'app-add-item',
   standalone: true,
   imports: [
     FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TranslatePipe,
   ],
   templateUrl: './add-item.component.html',
   styleUrl: './add-item.component.css'
@@ -25,7 +30,7 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {
     this.roomService.getAllRooms().subscribe((rooms) => {
       this.rooms = rooms;
-      console.log('Rooms in AddItemComponent:', rooms);
+      this.selectedRoom = rooms[0]
     });
   }
 
@@ -48,5 +53,10 @@ export class AddItemComponent implements OnInit {
     this.name = '';
     this.quantity = 0;
     this.price = 0;
+  }
+
+  @HostListener('contextmenu') debug() {
+    console.log('DEBUG', this);
+
   }
 }

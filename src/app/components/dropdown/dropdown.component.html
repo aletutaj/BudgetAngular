@@ -3,8 +3,12 @@
 </button>
 
 <mat-menu #menuTrigger="matMenu">
-  <button mat-menu-item *ngFor="let room of rooms" [routerLink]="['/room', room.value]">
+  <button mat-menu-item *ngFor="let room of roomService.allRooms" [routerLink]="['/room', room.value]">
     <mat-icon>{{ room.icon }}</mat-icon>
-    <span>{{ room.viewValue }}</span>
+    <span>{{ room.value }}</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/room/add-new']">
+    <mat-icon>add-new</mat-icon>
+    <span>dodaj nowy</span>
   </button>
 </mat-menu>

@@ -3,6 +3,7 @@ import { RouterOutlet } from "@angular/router";
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SubpageTableComponent } from "./widgets/subpage-table/subpage-table.component";
+import { AddNewRoomComponent } from "./components/add-new-room/add-new-room.component";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { SubpageTableComponent } from "./widgets/subpage-table/subpage-table.com
     NavigationComponent,
     BrowserAnimationsModule,
     SubpageTableComponent,
+    AddNewRoomComponent,
   ],
   styleUrl: './app.component.css'
 })

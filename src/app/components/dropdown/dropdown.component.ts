@@ -21,6 +21,7 @@ import { RouterModule } from "@angular/router";
     MatButtonModule,
     MatMenuModule,
     RouterModule,
+    CommonModule,
   ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.css'
@@ -32,13 +33,13 @@ export class DropdownComponent {
   buttonLabel = 'Wybierz pokój';
 
   rooms = [
-    {value: 'kitchen', viewValue: 'Kuchnia', icon: 'kitchen'},
-    {value: 'bathroom', viewValue: 'Łazienka', icon: 'bathtub'},
-    {value: 'toilet', viewValue: 'Toaleta', icon: 'wc'},
-    {value: 'add-new', viewValue: 'Dodaj nowe pomieszczenie', icon: 'add'},
+    {value: 'kitchen', icon: 'kitchen'},
+    {value: 'bathroom', icon: 'bathtub'},
+    {value: 'toilet', icon: 'wc'},
+    {value: 'add-new', icon: 'add'},
   ];
 
-  constructor(private roomService: RoomService) {
+  constructor(public roomService: RoomService) {
   }
 
   selectRoom(room: string): void {

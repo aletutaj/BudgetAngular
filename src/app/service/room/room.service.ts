@@ -18,7 +18,12 @@ export class RoomService {
   getAllRooms(): Observable<string[]> {
     const rooms = ['kitchen', 'bathroom', 'toilet', 'add-new'];
     this.roomsSubject.next(rooms);
-    console.log('Rooms:', rooms);
     return this.rooms$;
   }
+
+  allRooms = [
+    {value: 'kitchen', icon: 'kitchen'},
+    {value: 'bathroom', icon: 'bathtub'},
+    {value: 'toilet', icon: 'wc'},
+  ];
 }
