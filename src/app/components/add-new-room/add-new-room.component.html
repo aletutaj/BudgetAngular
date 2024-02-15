@@ -1,12 +1,12 @@
-<h3>Dodaj nowe pomieszczenie</h3>
+<form [formGroup]="roomForm">
+  <h3>Dodaj nowe pomieszczenie</h3>
+  <div>
+    <app-icon-picker formControlName="roomIcon"></app-icon-picker>
+  </div>
 
-<p>Wybierz ikonę</p>
-<app-icon-picker (iconSelected)="roomIcon = $event"></app-icon-picker>
-
-<p>Wpisz nazwę</p>
-<input [(ngModel)]="roomName">
-
-<button (click)="handleAddButtonClick()">Dodaj</button>
-<button>Anuluj</button>
-
-
+  <div>
+    <label for="room-name">Wpisz nazwę </label>
+    <input id="room-name" type="text" formControlName="roomName">
+  </div>
+  <button type="button" [disabled]="!roomForm.valid" (click)="handleAddButtonClick()">Dodaj</button>
+</form>

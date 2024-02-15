@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Output } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 @Component({
@@ -11,9 +12,17 @@ import { MatIconModule } from "@angular/material/icon";
     MatIconModule,
   ],
   templateUrl: './icon-picker.component.html',
-  styleUrl: './icon-picker.component.css'
+  styleUrl: './icon-picker.component.css',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => IconPickerComponent),
+      multi: true
+    }
+    ]
 })
-export class IconPickerComponent {
+export class IconPickerComponent implements ControlValueAccessor {
+
   @Output() iconSelected = new EventEmitter<string>();
   selectedIcon: string = "";
   containerVisible = false;
@@ -30,7 +39,7 @@ export class IconPickerComponent {
     'shower',
     'room_service',
     'bathtub',
-    'king bed',
+    'king_bed',
     'light',
     'room_preferences',
     'dining',
@@ -39,38 +48,52 @@ export class IconPickerComponent {
     'flatware',
     'fireplace',
     'smoking_rooms',
-    'airline seat recline',
-    'baby changing station',
-    'bedroom parent',
+    'airline_seat_recline',
+    'baby_changing_station',
+    'bedroom_parent',
     'scene',
-    'airline seat recline',
-    'bedroom baby',
-    'single bed',
+    'airline_seat_recline',
+    'bedroom_baby',
+    'single_bed',
     'bathroom',
-    'vaping rooms',
-    'hot tub',
+    'vaping_rooms',
+    'hot_tub',
     'living',
     'soap',
     'wash',
-    'bedroom child',
-    'nest multi room',
-    'no meeting room',
+    'bedroom_child',
+    'nest_multi_room',
+    'no_meeting_room',
     'dry',
-    'airline seat legroom',
-    'airline seat legroom',
-    'airline seat legroom',
-    'flights and hotels',
     'concierge',
   ];
 
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
+
+  writeValue(value: string): void {
+    this.selectedIcon = value || '';
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
   selectIcon(iconName: string) {
     this.containerVisible = false;
     this.selectedIcon = iconName;
+    this.onChange(iconName);
+    this.onTouched();
     this.iconSelected.emit(iconName);
   }
 
 }
 
-//validacja czy nie jest pusty,
-//ngModul dla iconPickera
-// dodac ControlValueAccessor
+//validacja czy nie jest pusty, (dodana w add new room)
+//ngModul dla iconPickera - done
+// dodac ControlValueAccessor - done

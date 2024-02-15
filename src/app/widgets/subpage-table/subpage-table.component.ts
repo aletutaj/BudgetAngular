@@ -26,10 +26,15 @@ export class SubpageTableComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.room !== null) {
-      this.itemService.getItemsForRoom(this.room).subscribe((items) => {
-        this.dataSource = items;
+      this.itemService.items$.subscribe(() => {
+        this.updateDataSource();
       });
-
     }
+  }
+
+  private updateDataSource(): void {
+    this.itemService.getItemsForRoom(this.room!).subscribe(items => {
+      this.dataSource = items;
+    });
   }
 }

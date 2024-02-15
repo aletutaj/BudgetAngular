@@ -8,10 +8,9 @@
 </div>
 
 <button (click)="containerVisible = !containerVisible">
-  @if(selectedIcon) {
-  <mat-icon>{{selectedIcon}}</mat-icon>
-  } @else {
-  pickAnIcon
-  }
+  <ng-container *ngIf="selectedIcon; else noIcon">
+    <mat-icon>{{selectedIcon}}</mat-icon>
+  </ng-container>
+  <ng-template #noIcon>Wybierz ikonę</ng-template>
 </button>
 

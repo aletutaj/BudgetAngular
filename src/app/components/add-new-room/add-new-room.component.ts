@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IconPickerComponent } from "../icon-picker/icon-picker.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RoomService } from "../../service/room/room.service";
 
 @Component({
@@ -14,15 +14,29 @@ import { RoomService } from "../../service/room/room.service";
   templateUrl: './add-new-room.component.html',
   styleUrl: './add-new-room.component.css'
 })
-export class AddNewRoomComponent {
-  roomIcon = ''; //zmienić na reactive forms
-  roomName = '';
+export class AddNewRoomComponent implements OnInit {
+  roomForm!: FormGroup;
 
-  constructor(public roomService: RoomService) {
+  constructor(private formBuilder: FormBuilder, private roomService: RoomService) {
+  }
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  private initializeForm(): void {
+    this.roomForm = this.formBuilder.group({
+      roomIcon: ['', Validators.required],
+      roomName: ['', Validators.required],
+    });
   }
 
   handleAddButtonClick(): void {
-    this.roomService.allRooms.push({value: this.roomName, icon: this.roomIcon})
-    console.log("jest ok", this.roomIcon, this.roomName);
+    if (this.roomForm.valid) {
+      const roomIcon = this.roomForm.get('roomIcon')?.value;
+      const roomName = this.roomForm.get('roomName')?.value;
+      this.roomService.allRooms.push({value: roomName, icon: roomIcon});
+      console.log('Dodano nowe pomieszczenie:', roomIcon, roomName);
+    }
   }
 }

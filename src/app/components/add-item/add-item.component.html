@@ -20,7 +20,7 @@
       <input type="number" id="itemPrice" name="itemPrice" [(ngModel)]="price" required>
     </div>
     <div>
-      <button type="submit" [disabled]="!itemForm.valid">Dodaj</button>
+      <button type="submit" [disabled]="!itemForm.valid" (click)="addItem()">Dodaj</button>
     </div>
   </form>
 </div>
