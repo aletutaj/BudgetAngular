@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RoomService } from "../../service/room/room.service";
 import { CommonModule } from "@angular/common";
 import { TranslatePipe } from "../../pipes/translate.pipe";
+import { Room } from "../../service/room/room.model";
 
 @Component({
   selector: 'app-add-item',
@@ -15,11 +16,12 @@ import { TranslatePipe } from "../../pipes/translate.pipe";
     TranslatePipe,
   ],
   templateUrl: './add-item.component.html',
-  styleUrl: './add-item.component.css'
+  styleUrl: './add-item.component.css',
+  host: {class: 'm-3'},
 })
 export class AddItemComponent implements OnInit {
-  rooms: string[] = [];
-  selectedRoom: string | null = null;
+  rooms: Room[] = [];
+  selectedRoom: Room | null = null;
   name: string = '';
   quantity: number = 0;
   price: number = 0;
@@ -35,18 +37,15 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem(): void {
-
     if (this.selectedRoom && this.name && this.quantity && this.price) {
       const newItem = {
         name: this.name,
         quantity: this.quantity,
         price: this.price
       };
-
-      this.itemService.addItemToRoom(this.selectedRoom, newItem);
+      this.itemService.addItemToRoom(this.selectedRoom.name, newItem);
       this.clearForm();
     }
-
   }
 
   private clearForm(): void {

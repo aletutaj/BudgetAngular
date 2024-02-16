@@ -1,3 +1,4 @@
+<div class="m-3">
 <table mat-table [dataSource]="dataSource" class="subpage-table">
   <ng-container matColumnDef="Nazwa">
     <th mat-header-cell *matHeaderCellDef>Nazwa</th>
@@ -17,3 +18,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+</div>

@@ -35,7 +35,7 @@ export class AddNewRoomComponent implements OnInit {
     if (this.roomForm.valid) {
       const roomIcon = this.roomForm.get('roomIcon')?.value;
       const roomName = this.roomForm.get('roomName')?.value;
-      this.roomService.allRooms.push({value: roomName, icon: roomIcon});
+      this.roomService.addRoom({name: roomName, icon: roomIcon});
       console.log('Dodano nowe pomieszczenie:', roomIcon, roomName);
     }
   }

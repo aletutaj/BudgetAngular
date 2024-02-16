@@ -1,10 +1,10 @@
-<div>
+<div class="m-3">
   <h2>Dodaj przedmiot</h2>
   <form (ngSubmit)="addItem()" #itemForm="ngForm">
     <div>
       <label for="room">Wybierz pokój:</label>
       <select id="room" [(ngModel)]="selectedRoom">
-        <option *ngFor="let room of rooms" [value]="room">{{ room | translate }}</option>
+        <option *ngFor="let room of rooms" [value]="room.name">{{ room.name | translate }}</option>
       </select>
     </div>
     <div>

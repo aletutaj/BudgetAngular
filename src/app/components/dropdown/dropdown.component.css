@@ -1,15 +1,11 @@
 :host {
   display: inline-block;
+  position: absolute;
 }
 
 button {
   padding: 10px;
   border: 1px solid #ccc;
-
-}
-
-.room-button {
-  position: relative;
 }
 
 mat-menu {

@@ -7,6 +7,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { RoomService } from "../../service/room/room.service";
 import { RouterModule } from "@angular/router";
+import { Room } from "../../service/room/room.model";
 
 @Component({
   selector: 'app-dropdown',
@@ -30,16 +31,16 @@ export class DropdownComponent {
   @Input() roomMenuTrigger!: MatMenuTrigger;
   @Output() roomSelected = new EventEmitter<string>();
 
+  rooms: Room[] = [];
   buttonLabel = 'Wybierz pokój';
 
-  rooms = [
-    {value: 'kitchen', icon: 'kitchen'},
-    {value: 'bathroom', icon: 'bathtub'},
-    {value: 'toilet', icon: 'wc'},
-    {value: 'add-new', icon: 'add'},
-  ];
-
   constructor(public roomService: RoomService) {
+  }
+
+  ngOnInit(): void {
+    this.roomService.getAllRooms().subscribe(rooms => {
+      this.rooms = rooms
+    });
   }
 
   selectRoom(room: string): void {

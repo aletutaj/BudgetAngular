@@ -8,5 +8,5 @@
     <label for="room-name">Wpisz nazwę </label>
     <input id="room-name" type="text" formControlName="roomName">
   </div>
-  <button type="button" [disabled]="!roomForm.valid" (click)="handleAddButtonClick()">Dodaj</button>
+  <button class="btn" [className]="roomForm.valid ? 'btn-submit' : 'btn-danger'" type="button" [disabled]="!roomForm.valid" (click)="handleAddButtonClick()">Dodaj</button>
 </form>

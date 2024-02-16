@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from "../../service/item/item.service";
 import { RoomService } from "../../service/room/room.service";
 import { MatTableModule } from "@angular/material/table";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-budget-summary',
   standalone: true,
   imports: [
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   templateUrl: './budget-summary.component.html',
-  styleUrl: './budget-summary.component.css'
+  styleUrl: './budget-summary.component.css',
 })
 export class BudgetSummaryComponent implements OnInit {
   displayedColumns: string[] = ["Nazwa", "Ilość", "Cena", "Pokój"];
@@ -26,10 +28,9 @@ export class BudgetSummaryComponent implements OnInit {
   loadBudgetSummary(): void {
     this.roomService.getAllRooms().subscribe(rooms => {
       rooms.forEach(room => {
-        this.itemService.getItemsForRoom(room).subscribe(items => {
+        this.itemService.getItemsForRoom(room.name).subscribe(items => {
           items.forEach(item => {
-            this.dataSource.push({...item, room: room});
-            console.log('Items:', this.dataSource)
+            this.dataSource.push({...item, room: {name: room.name, icon: room.icon}});
           });
         });
       });
