@@ -1,16 +1,19 @@
-:host {
-  display: inline-block;
-  position: absolute;
-}
+/*:host {*/
+/*  display: inline-block;*/
+/*  position: relative;*/
+/*}*/
 
-button {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-mat-menu {
-  margin-top: 5px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-}
+/*button {*/
+/*  padding: 10px;*/
+/*  border: 1px solid #ccc;*/
+/*}*/
+/*.dropdown-wrapper{*/
+/*  !*position: absolute;*!*/
+/*  !*margin-top: 5px;*!*/
+/*  !*top: 50px;*!*/
+/*  !*left: 0;*!*/
+/*  !*width: 500px;*!*/
+/*  !*height: 500px;*!*/
+/*}*/
+/*mat-menu {*/
+/*}*/

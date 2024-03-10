@@ -1,36 +1,44 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
+import { Item, ItemsByRoom } from "./item.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-
-  private itemsSubject = new BehaviorSubject<any[]>([]);
-  private items: { [room: string]: any[] } = {};
-  items$: Observable<any[]> = this.itemsSubject.asObservable();
-
   constructor() {
+    this.loadItemsFromLocalStorage();
   }
 
-  getItemsForRoom(room: string): Observable<any[]> {
-    const itemsForRoom: any[] = [
-      {name: 'xx', quantity: 2, price: 10},
-    ];
-    return new Observable<any[]>(observer => {
-      observer.next(itemsForRoom);
-      observer.complete();
-    });
-  }
-
-  addItemToRoom(room: string, newItem: any): Observable<void> {
-    return new Observable<void>(observer => {
-      if (!this.items[room]) {
-        this.items[room] = [];
+  private parseItemsByRoom(items: Item[]): ItemsByRoom {
+    const itemsByRoom: ItemsByRoom = {};
+    items.forEach(item => {
+      const roomName = item.roomName;
+      if (roomName) {
+        if (itemsByRoom[roomName]) {
+          itemsByRoom[roomName].push(item);
+        } else {
+          itemsByRoom[roomName] = [item];
+        }
       }
-      this.items[room].push(newItem);
-      observer.next();
-      observer.complete();
     });
+    return itemsByRoom;
+  }
+
+  private loadItemsFromLocalStorage(): void {
+    const items: Item[] = JSON.parse(localStorage.getItem("items") || '[]');
+    const itemsByRoom: ItemsByRoom = this.parseItemsByRoom(items);
+  }
+
+  getItemsForRoom(roomName: string): Observable<Item[]> {
+    const localStorageItems: Item[] = JSON.parse(localStorage.getItem("items") || '[]');
+    return of(localStorageItems.filter((item: Item) => item.roomName === roomName))
+  }
+
+  addItemToRoom(item: Item): void {
+    const items: any[] = JSON.parse(localStorage.getItem("items") || '[]');
+    items.push(item);
+    localStorage.setItem("items", JSON.stringify(items));
+    console.log("Dodaje ajtem ", item)
   }
 }

@@ -1,14 +1,15 @@
-<button mat-menu-trigger class="room-button" [matMenuTriggerFor]="menuTrigger" style="cursor: pointer;">
-  {{ buttonLabel }}
-</button>
-
-<mat-menu #menuTrigger="matMenu">
-  <button mat-menu-item *ngFor="let room of rooms" [routerLink]="['/room', room.name]">
-    <mat-icon>{{ room.icon }}</mat-icon>
-    <span>{{ room.name }}</span>
+<div>
+  <button mat-menu-trigger class="room-button" [matMenuTriggerFor]="menuTrigger" style="cursor: pointer;">
+    {{ buttonLabel }}
   </button>
-  <button mat-menu-item [routerLink]="['/room/add-new']">
-    <mat-icon>add-new</mat-icon>
-    <span>dodaj nowy</span>
-  </button>
-</mat-menu>
+  <mat-menu #menuTrigger="matMenu" yPosition="above">
+    <button mat-menu-item *ngFor="let room of rooms" [routerLink]="['/room', room.name]">
+      <mat-icon>{{ room.icon }}</mat-icon>
+      <span>{{ room.name }}</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/room/add-new']">
+      <mat-icon>add-new</mat-icon>
+      <span>dodaj nowy</span>
+    </button>
+  </mat-menu>
+</div>

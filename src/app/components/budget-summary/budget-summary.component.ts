@@ -3,6 +3,7 @@ import { ItemService } from "../../service/item/item.service";
 import { RoomService } from "../../service/room/room.service";
 import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
+import { Room } from "../../service/room/room.model";
 
 @Component({
   selector: 'app-budget-summary',
@@ -18,22 +19,19 @@ export class BudgetSummaryComponent implements OnInit {
   displayedColumns: string[] = ["Nazwa", "Ilość", "Cena", "Pokój"];
   dataSource: any[] = [];
 
-  constructor(private itemService: ItemService, private roomService: RoomService) {
+  constructor(private roomService: RoomService, private itemService: ItemService) {
   }
 
   ngOnInit(): void {
-    this.loadBudgetSummary();
-  }
-
-  loadBudgetSummary(): void {
-    this.roomService.getAllRooms().subscribe(rooms => {
+    this.roomService.getAllRooms().subscribe((rooms: Room[]) => {
       rooms.forEach(room => {
-        this.itemService.getItemsForRoom(room.name).subscribe(items => {
-          items.forEach(item => {
-            this.dataSource.push({...item, room: {name: room.name, icon: room.icon}});
+        const items = this.itemService.getItemsForRoom(room.name);
+        items.subscribe(itemList => {
+          itemList.forEach(item => {
+            this.dataSource.push({...item, room: room.name});
           });
         });
       });
     });
   };
-};
+}

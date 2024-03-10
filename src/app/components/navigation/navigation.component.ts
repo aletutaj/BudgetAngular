@@ -6,6 +6,7 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
 import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
+import { AddItemComponent } from "../add-item/add-item.component";
 
 @Component({
   selector: 'app-navigation',
@@ -17,6 +18,7 @@ import { MatButtonModule } from "@angular/material/button";
     RouterLink,
     BrowserAnimationsModule,
     MatButtonModule,
+    AddItemComponent,
   ],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
@@ -38,7 +40,8 @@ export class NavigationComponent {
 
   selectedRoom: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   onRoomSelected(room: string): void {
     this.selectedRoom = room;

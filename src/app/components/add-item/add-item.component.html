@@ -3,7 +3,7 @@
   <form (ngSubmit)="addItem()" #itemForm="ngForm">
     <div>
       <label for="room">Wybierz pokój:</label>
-      <select id="room" [(ngModel)]="selectedRoom">
+      <select id="room" [(ngModel)]="selectedRoomName">
         <option *ngFor="let room of rooms" [value]="room.name">{{ room.name | translate }}</option>
       </select>
     </div>

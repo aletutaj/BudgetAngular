@@ -5,6 +5,7 @@ import { RoomService } from "../../service/room/room.service";
 import { CommonModule } from "@angular/common";
 import { TranslatePipe } from "../../pipes/translate.pipe";
 import { Room } from "../../service/room/room.model";
+import { Item } from "../../service/item/item.model";
 
 @Component({
   selector: 'app-add-item',
@@ -21,7 +22,7 @@ import { Room } from "../../service/room/room.model";
 })
 export class AddItemComponent implements OnInit {
   rooms: Room[] = [];
-  selectedRoom: Room | null = null;
+  selectedRoomName: string = '';
   name: string = '';
   quantity: number = 0;
   price: number = 0;
@@ -30,20 +31,23 @@ export class AddItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("On init")
     this.roomService.getAllRooms().subscribe((rooms) => {
       this.rooms = rooms;
-      this.selectedRoom = rooms[0]
+      this.selectedRoomName = rooms[0].name;
     });
   }
 
   addItem(): void {
-    if (this.selectedRoom && this.name && this.quantity && this.price) {
-      const newItem = {
+    if (this.selectedRoomName && this.name && this.quantity && this.price) {
+      const newItem: Item = {
         name: this.name,
         quantity: this.quantity,
-        price: this.price
+        price: this.price,
+        roomName: this.selectedRoomName
       };
-      this.itemService.addItemToRoom(this.selectedRoom.name, newItem);
+      this.itemService.addItemToRoom(newItem);
+      console.log('Dodano nowy item:', newItem);
       this.clearForm();
     }
   }
