@@ -6,6 +6,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { Subscription } from "rxjs";
 import { Item } from "../../service/item/item.model";
 import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-subpage-table',
@@ -15,6 +16,7 @@ import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
+    CommonModule,
   ],
   templateUrl: './subpage-table.component.html',
   styleUrl: './subpage-table.component.css'
@@ -25,6 +27,7 @@ export class SubpageTableComponent implements OnInit, OnDestroy, OnChanges {
   displayedColumns: string[] = ["Nazwa", "Ilość", "Cena"];
   dataSource: Item[] = [];
   itemsSubscription: Subscription | undefined;
+  selectedItem: Item | null = null;
   // @ts-ignore
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
@@ -49,9 +52,22 @@ export class SubpageTableComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  onRightClick($event: MouseEvent, row: any) {
+  onRightClick($event: MouseEvent, item: Item) {
     $event.preventDefault()
+    this.selectedItem = item;
     this.trigger.openMenu();
-    console.log("row", row)
+    console.log("row", item)
+  }
+
+  deleteItem(): void {
+    const selectedItem = this.selectedItem ?? null;
+    if (selectedItem !== null) {
+      let items: Item[] = JSON.parse(localStorage.getItem("items") || '[]');
+      items = items.filter(i => i.name !== selectedItem.name);
+      localStorage.setItem("items", JSON.stringify(items));
+      console.log("usunieto item ", selectedItem);
+      this.itemService.loadItemsFromLocalStorage();
+      this.dataSource = items;
+    }
   }
 }

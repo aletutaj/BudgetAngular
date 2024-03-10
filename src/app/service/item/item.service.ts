@@ -25,7 +25,7 @@ export class ItemService {
     return itemsByRoom;
   }
 
-  private loadItemsFromLocalStorage(): void {
+  loadItemsFromLocalStorage(): void {
     const items: Item[] = JSON.parse(localStorage.getItem("items") || '[]');
     const itemsByRoom: ItemsByRoom = this.parseItemsByRoom(items);
   }
