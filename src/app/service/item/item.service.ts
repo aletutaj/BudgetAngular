@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Item, ItemsByRoom } from "./item.model";
+import { getUiD } from "../../utils/store.utils";
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,10 @@ export class ItemService {
 
   addItemToRoom(item: Item): void {
     const items: any[] = JSON.parse(localStorage.getItem("items") || '[]');
-    items.push(item);
+    const allIds = items.map(item => item.id);
+    const id = getUiD(allIds);
+    items.push({...item, id});
     localStorage.setItem("items", JSON.stringify(items));
-    console.log("Dodaje ajtem ", item)
+    console.log("Dodaje ajtem ", {...item, id})
   }
 }

@@ -4,11 +4,13 @@ import { AddItemComponent } from "./components/add-item/add-item.component";
 import { BudgetSummaryComponent } from "./components/budget-summary/budget-summary.component";
 import { DropdownComponent } from "./components/dropdown/dropdown.component";
 import { AddNewRoomComponent } from "./components/add-new-room/add-new-room.component";
+import { EditItemComponent } from "./components/edit-item/edit-item.component";
 
 export const routes: Routes = [
 
   {path: 'summary', component: BudgetSummaryComponent},
   {path: 'add-item', component: AddItemComponent},
+  {path: 'edit-item', component: EditItemComponent},
   {path: 'dropdown', component: DropdownComponent},
   {path: 'room/add-new', component: AddNewRoomComponent},
   {path: 'room/:roomId', component: RoomComponent},

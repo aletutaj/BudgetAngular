@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SubpageTableComponent } from "./widgets/subpage-table/subpage-table.component";
 import { AddNewRoomComponent } from "./components/add-new-room/add-new-room.component";
 import { BudgetSummaryComponent } from "./components/budget-summary/budget-summary.component";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { BudgetSummaryComponent } from "./components/budget-summary/budget-summa
     SubpageTableComponent,
     AddNewRoomComponent,
     BudgetSummaryComponent,
+    FormsModule
   ],
   styleUrl: './app.component.css'
 })

@@ -7,6 +7,8 @@ import { Subscription } from "rxjs";
 import { Item } from "../../service/item/item.model";
 import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
 import { CommonModule } from "@angular/common";
+import { EditItemComponent } from "../../components/edit-item/edit-item.component";
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-subpage-table',
@@ -17,6 +19,9 @@ import { CommonModule } from "@angular/common";
     MatButtonModule,
     MatMenuModule,
     CommonModule,
+    EditItemComponent,
+    RouterLink,
+    RouterModule,
   ],
   templateUrl: './subpage-table.component.html',
   styleUrl: './subpage-table.component.css'
@@ -70,4 +75,10 @@ export class SubpageTableComponent implements OnInit, OnDestroy, OnChanges {
       this.dataSource = items;
     }
   }
+
+  editItem(): void {
+    const selectedItem = this.selectedItem ?? null;
+
+  }
+  saveChanges(updatedItem: Item): void {}
 }

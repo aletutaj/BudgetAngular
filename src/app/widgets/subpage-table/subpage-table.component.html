@@ -49,6 +49,12 @@
 </div>
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">
-  <!--  <button mat-menu-item (click)="editItem(item)" >Edytuj</button>-->
+  <button mat-menu-item (click)="editItem()" *ngIf="selectedItem" routerLink ="/edit-item" [state]="{selectedItem, roomName }">Edytuj</button>
   <button mat-menu-item (click)="deleteItem()" *ngIf="selectedItem">Usuń</button>
 </mat-menu>
+<!--<app-edit-item [item]="selectedItem" [roomName]="roomName" (save)="saveChanges($event)" *ngIf="selectedItem"></app-edit-item>-->
+
+{{selectedItem | json}}
+
+
+<!--[state]="{ orderId: 1234 }"-->

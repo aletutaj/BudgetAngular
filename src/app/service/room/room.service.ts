@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { Room } from "./room.model";
+import { getUiD } from "../../utils/store.utils";
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,9 @@ export class RoomService {
 
   addRoom(room: Room): void {
     const rooms: Room[] = JSON.parse(localStorage.getItem("rooms") || '[]');
-    rooms.push(room);
+    const allIds = rooms.map(room => room.id) as number[];
+    const id = getUiD(allIds);
+    rooms.push({...room, id});
     localStorage.setItem("rooms", JSON.stringify(rooms));
     console.log("zapisane nowe pokoje", localStorage.getItem("rooms"))
     this.updateAllRooms();

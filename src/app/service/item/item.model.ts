@@ -1,8 +1,9 @@
 export interface Item {
-  roomName: string;
+  roomName: string | null;
   name: string;
   quantity: number;
-  price: number
+  price: number;
+  id?: number;
 }
 
 export interface ItemsByRoom {

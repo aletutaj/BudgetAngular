@@ -93,7 +93,3 @@ export class IconPickerComponent implements ControlValueAccessor {
   }
 
 }
-
-//validacja czy nie jest pusty, (dodana w add new room)
-//ngModul dla iconPickera - done
-// dodac ControlValueAccessor - done
